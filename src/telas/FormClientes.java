@@ -77,7 +77,8 @@ public class FormClientes extends javax.swing.JFrame {
         btnExcluir.setText("Excluir");
         getContentPane().add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 80, 30));
 
-        pack();
+        setSize(new java.awt.Dimension(521, 346));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
