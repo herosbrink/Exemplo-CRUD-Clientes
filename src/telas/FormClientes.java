@@ -5,6 +5,11 @@
  */
 package telas;
 
+import dao.ClientesDao;
+import java.awt.HeadlessException;
+import javabeans.Clientes;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author vmari
@@ -63,10 +68,20 @@ public class FormClientes extends javax.swing.JFrame {
 
         btnNovo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnNovo.setText("Novo");
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 70, 30));
 
         btnSalvar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 80, 30));
 
         btnEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -80,6 +95,31 @@ public class FormClientes extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(521, 346));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        // BOTÃO SALVAR
+
+        try {
+            // salva dados no obj Clientes.
+            Clientes obj = new Clientes();
+            obj.setNome(txtNome.getText());
+            obj.setEmail(txtEmail.getText());
+            obj.setTelefone(txtTelefone.getText());
+
+            // criar um obj do tipo ClienteDao
+            ClientesDao dao = new ClientesDao();
+            dao.cadastrarCliente(obj);
+
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao Cadastrar " + e);
+        }
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
      * @param args the command line arguments
