@@ -7,8 +7,10 @@ package telas;
 
 import dao.ClientesDao;
 import java.awt.HeadlessException;
+import java.util.List;
 import javabeans.Clientes;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -44,9 +46,14 @@ public class FormClientes extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabela = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -94,7 +101,7 @@ public class FormClientes extends javax.swing.JFrame {
         btnExcluir.setText("Excluir");
         getContentPane().add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 80, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -110,7 +117,7 @@ public class FormClientes extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabela);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 310, 480, 100));
 
@@ -142,6 +149,12 @@ public class FormClientes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro ao Cadastrar " + e);
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // Preenche a tabela com as informações do BD    
+        listarTabela();
+
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -189,9 +202,34 @@ public class FormClientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabela;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
+
+    public void listarTabela() {
+
+        try {
+            // 1 Executar o método listarClientes da classe ClientesDao e colocar resultado em uma nova lista
+            ClientesDao dao = new ClientesDao();
+            List<Clientes> listaclientes = dao.listarClientes();
+
+            // 2 Colocar os dados na tabela através do TableModel
+            DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+            modelo.setNumRows(0); // Zerar todas as linhas do TableModel
+
+            // Percorre a lista e adiciona nas linhas as informações.
+            for (Clientes c : listaclientes) {
+                modelo.addRow(new Object[]{
+                    c.getIdcliente(),
+                    c.getNome(),
+                    c.getEmail(),
+                    c.getTelefone()
+                });
+            }
+        } catch (Exception e) {
+        }
+
+    }
 }
