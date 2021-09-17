@@ -106,6 +106,11 @@ public class FormClientes extends javax.swing.JFrame {
 
         btnExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 80, 30));
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
@@ -145,7 +150,8 @@ public class FormClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        // TODO add your handling code here:
+        // Botão Novo
+         limparCampos();
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -205,6 +211,28 @@ public class FormClientes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro ao Editar " + e);
         }
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // Botão Excluir
+        try {
+            // receber  dados no obj Clientes.
+            Clientes obj = new Clientes();
+            obj.setIdcliente(Integer.parseInt(txtCodigo.getText()));
+
+            // criar um obj do tipo ClienteDao pois ele possui o método para salvar no BD.
+            ClientesDao dao = new ClientesDao();
+            dao.excluirCliente(obj);
+
+            JOptionPane.showMessageDialog(null, "Dados excluido com sucesso!");
+            
+             limparCampos();
+
+
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao Excluir " + e);
+        }
+
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,5 +311,12 @@ public class FormClientes extends javax.swing.JFrame {
         } catch (Exception e) {
         }
 
+    }
+    
+    public void limparCampos(){
+        txtCodigo.setText(null);
+        txtNome.setText(null);
+        txtTelefone.setText(null);
+        txtEmail.setText(null);
     }
 }
