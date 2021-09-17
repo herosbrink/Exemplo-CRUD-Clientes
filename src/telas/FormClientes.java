@@ -97,6 +97,11 @@ public class FormClientes extends javax.swing.JFrame {
 
         btnEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 80, 30));
 
         btnExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -179,6 +184,27 @@ public class FormClientes extends javax.swing.JFrame {
         txtEmail.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
 
     }//GEN-LAST:event_tabelaMouseClicked
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // Botão Editar 
+        try {
+            // salva dados no obj Clientes.
+            Clientes obj = new Clientes();
+            obj.setNome(txtNome.getText());
+            obj.setEmail(txtEmail.getText());
+            obj.setTelefone(txtTelefone.getText());
+            obj.setIdcliente(Integer.parseInt(txtCodigo.getText()));
+
+            // criar um obj do tipo ClienteDao pois ele possui o método para salvar no BD.
+            ClientesDao dao = new ClientesDao();
+            dao.editarCliente(obj);
+
+            JOptionPane.showMessageDialog(null, "Dados editados com sucesso!");
+
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao Editar " + e);
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     /**
      * @param args the command line arguments
