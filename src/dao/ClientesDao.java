@@ -105,8 +105,7 @@ public class ClientesDao {
         }
     }
     
-    
-    // Método para listar os clientes na Jtable
+     // Método para listar os clientes na Jtable
     public List<Clientes> listarClientes(){
         try {
             
@@ -141,5 +140,40 @@ public class ClientesDao {
         
     }
     
+    // Método para fazer Busca por Nome
+    public List<Clientes> BuscarClientes(String nome){
+        try {
+            
+           // 1º Criar o vetor que vai armazenar os registros do BD
+            List<Clientes> lista = new ArrayList<Clientes>();
+            
+            // 2º Criar o comando SQL
+            String cmdSql = "select * from clientes where nome like ?";
+            
+            //  Organizar o comando para execução
+            PreparedStatement stmt = conecta.prepareStatement(cmdSql);
+            stmt.setString(1, nome);
+            
+            // 3º Guardar o resultado do "select" dentro do objeto "rs" que é do tipo ResultSet
+            ResultSet rs = stmt.executeQuery();
+            
+            // 4º Enquanto houver registros (resultado do select) guarde na lista
+            while(rs.next()){
+                Clientes cli = new Clientes();
+                cli.setIdcliente(rs.getInt("idcliente"));
+                cli.setNome(rs.getString("nome"));
+                cli.setEmail(rs.getString("email"));
+                cli.setTelefone(rs.getString("telefone"));
+                
+                lista.add(cli);
+            }
+            return lista;
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        
+    }
     
 }
