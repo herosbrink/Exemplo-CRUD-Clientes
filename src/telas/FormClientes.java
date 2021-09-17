@@ -37,18 +37,23 @@ public class FormClientes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtTelefone = new javax.swing.JTextField();
-        txtEmail = new javax.swing.JTextField();
         btnNovo = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
-        btnExcluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtEmail1 = new javax.swing.JTextField();
+        btnExcluir1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        txtBusca = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -69,13 +74,8 @@ public class FormClientes extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Telefone:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Email:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
         getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 340, -1));
         getContentPane().add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 340, -1));
-        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 340, -1));
 
         btnNovo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnNovo.setText("Novo");
@@ -84,7 +84,7 @@ public class FormClientes extends javax.swing.JFrame {
                 btnNovoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 70, 30));
+        getContentPane().add(btnNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 70, 30));
 
         btnSalvar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSalvar.setText("Salvar");
@@ -93,7 +93,7 @@ public class FormClientes extends javax.swing.JFrame {
                 btnSalvarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 80, 30));
+        getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 80, 30));
 
         btnEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnEditar.setText("Editar");
@@ -102,16 +102,7 @@ public class FormClientes extends javax.swing.JFrame {
                 btnEditarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 80, 30));
-
-        btnExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnExcluir.setText("Excluir");
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 80, 30));
+        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, 80, 30));
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -136,7 +127,7 @@ public class FormClientes extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabela);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 310, 480, 100));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 480, 100));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Cod:");
@@ -145,7 +136,43 @@ public class FormClientes extends javax.swing.JFrame {
         txtCodigo.setEditable(false);
         getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 60, -1));
 
-        setSize(new java.awt.Dimension(520, 474));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Email:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
+        getContentPane().add(txtEmail1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 340, -1));
+
+        btnExcluir1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnExcluir1.setText("Excluir");
+        btnExcluir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluir1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnExcluir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, 80, 30));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Buscar"));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(txtBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 280, 30));
+
+        btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 80, 30));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Nome:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 480, 80));
+
+        setSize(new java.awt.Dimension(535, 561));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -161,7 +188,7 @@ public class FormClientes extends javax.swing.JFrame {
             // salva dados no obj Clientes.
             Clientes obj = new Clientes();
             obj.setNome(txtNome.getText());
-            obj.setEmail(txtEmail.getText());
+            obj.setEmail(txtBusca.getText());
             obj.setTelefone(txtTelefone.getText());
 
             // criar um obj do tipo ClienteDao pois ele possui o método para salvar no BD.
@@ -187,7 +214,7 @@ public class FormClientes extends javax.swing.JFrame {
         txtCodigo.setText(tabela.getValueAt(tabela.getSelectedRow(), 0).toString());
         txtNome.setText(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
         txtTelefone.setText(tabela.getValueAt(tabela.getSelectedRow(), 3).toString());
-        txtEmail.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
+        txtBusca.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
 
     }//GEN-LAST:event_tabelaMouseClicked
 
@@ -197,7 +224,7 @@ public class FormClientes extends javax.swing.JFrame {
             // salva dados no obj Clientes.
             Clientes obj = new Clientes();
             obj.setNome(txtNome.getText());
-            obj.setEmail(txtEmail.getText());
+            obj.setEmail(txtBusca.getText());
             obj.setTelefone(txtTelefone.getText());
             obj.setIdcliente(Integer.parseInt(txtCodigo.getText()));
 
@@ -212,7 +239,7 @@ public class FormClientes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // Botão Excluir
         try {
             // receber  dados no obj Clientes.
@@ -232,7 +259,35 @@ public class FormClientes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro ao Excluir " + e);
         }
 
-    }//GEN-LAST:event_btnExcluirActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluir1ActionPerformed
+        // Botão Buscar
+         try {
+           // String nome recebe o campo de texto da busca. 
+           String nome = txtBusca.getText();
+           
+           // Objeto do ClientesDao para acessar o método BuscarClientes
+            ClientesDao dao = new ClientesDao();
+            List<Clientes> listaclientes = dao.BuscarClientes(nome); // Passa a String nome como parametro
+
+            // 2 Coloca os dados na tabela através do TableModel
+            DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+            modelo.setNumRows(0); // Zerar todas as linhas do TableModel
+
+            // Percorre a lista e adiciona nas linhas as informações.
+            for (Clientes c : listaclientes) {
+                modelo.addRow(new Object[]{
+                    c.getIdcliente(),
+                    c.getNome(),
+                    c.getEmail(),
+                    c.getTelefone()
+                });
+            }
+        } catch (Exception e) {
+        }
+        
+    }//GEN-LAST:event_btnExcluir1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -271,8 +326,9 @@ public class FormClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnExcluir1;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;
@@ -280,10 +336,14 @@ public class FormClientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabela;
+    private javax.swing.JTextField txtBusca;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtEmail1;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
@@ -317,6 +377,6 @@ public class FormClientes extends javax.swing.JFrame {
         txtCodigo.setText(null);
         txtNome.setText(null);
         txtTelefone.setText(null);
-        txtEmail.setText(null);
+        txtBusca.setText(null);
     }
 }
