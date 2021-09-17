@@ -22,7 +22,6 @@ public class ClientesDao {
     }
     
     // Método Cadastrar Cliente
-    
     public void cadastrarCliente(Clientes obj){
         try {
             
@@ -49,6 +48,63 @@ public class ClientesDao {
             throw new  RuntimeException(e);
         }
     }
+    
+     // Método Editar Cliente
+    public void editarCliente(Clientes obj){
+        try {
+            
+            // criar o comando SQL
+            
+            String cmdsql = "update clientes set nome=?, email=?, telefone=? where idcliente=?";
+            
+            // organizar o comando e executar
+            
+            PreparedStatement stmt = conecta.prepareStatement(cmdsql);
+            stmt.setString(1, obj.getNome());
+            stmt.setString(2, obj.getEmail());
+            stmt.setString(3, obj.getTelefone());
+            stmt.setInt(4, obj.getIdcliente());
+            
+            // executar o comando
+            
+            stmt.execute();
+            
+            // fechar a conexão
+            
+            stmt.close();
+            
+        } catch (SQLException e) {
+            throw new  RuntimeException(e);
+        }
+    }
+    
+     // Método Excluir Cliente
+    public void excluirCliente(Clientes obj){
+        try {
+            
+            // criar o comando SQL
+            
+            String cmdsql = "delete from clientes where idcliente=?";
+            
+            // organizar o comando e executar
+            
+            PreparedStatement stmt = conecta.prepareStatement(cmdsql);
+            stmt.setInt(1, obj.getIdcliente());
+           
+            
+            // executar o comando
+            
+            stmt.execute();
+            
+            // fechar a conexão
+            
+            stmt.close();
+            
+        } catch (SQLException e) {
+            throw new  RuntimeException(e);
+        }
+    }
+    
     
     // Método para listar os clientes na Jtable
     public List<Clientes> listarClientes(){
