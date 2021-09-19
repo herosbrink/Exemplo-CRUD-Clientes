@@ -21,8 +21,16 @@ public class FormClientes extends javax.swing.JFrame {
     /**
      * Creates new form Frm_Clientes
      */
-    public FormClientes() {
+    public FormClientes(Clientes obj) {
         initComponents();
+        
+        txtCodigo.setText(String.valueOf(obj.getIdcliente()));
+        txtNome.setText(obj.getNome());
+        txtEmail.setText(obj.getEmail());
+        txtTelefone.setText(obj.getTelefone());
+        
+        
+        
     }
 
     /**
@@ -48,7 +56,7 @@ public class FormClientes extends javax.swing.JFrame {
         txtCodigo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtEmail1 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         btnExcluir1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtBusca = new javax.swing.JTextField();
@@ -142,7 +150,7 @@ public class FormClientes extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
-        getContentPane().add(txtEmail1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 340, -1));
+        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 340, -1));
 
         btnExcluir1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnExcluir1.setText("Excluir");
@@ -214,7 +222,7 @@ public class FormClientes extends javax.swing.JFrame {
         txtCodigo.setText(tabela.getValueAt(tabela.getSelectedRow(), 0).toString());
         txtNome.setText(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
         txtTelefone.setText(tabela.getValueAt(tabela.getSelectedRow(), 3).toString());
-        txtBusca.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
+        txtEmail.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
 
     }//GEN-LAST:event_tabelaMouseClicked
 
@@ -320,7 +328,7 @@ public class FormClientes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormClientes().setVisible(true);
+                new FormClientes(null).setVisible(true);
             }
         });
     }
@@ -343,7 +351,7 @@ public class FormClientes extends javax.swing.JFrame {
     private javax.swing.JTable tabela;
     private javax.swing.JTextField txtBusca;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtEmail1;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
