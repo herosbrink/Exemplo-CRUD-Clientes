@@ -87,7 +87,7 @@ public class FormLogin extends javax.swing.JFrame {
             // Usa o retorno do método como condição. 
             if(dao.fazerLogin(email, senha)){
                 // se retornar true, chama tela cadastro cliente
-                FormClientes cli = new FormClientes();
+                FormClientes cli = new FormClientes(null);
                 cli.setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(null, "Usuário não encontrado!");
