@@ -1,4 +1,3 @@
-
 package dao;
 
 import java.sql.Connection;
@@ -10,192 +9,177 @@ import java.util.List;
 import javabeans.Clientes;
 import jdbc.ConnectionFactory;
 
-
 public class ClientesDao {
-    
+
     private Connection conecta;
-    
+
     // Construtor
-    
-    public ClientesDao(){
+    public ClientesDao() {
         this.conecta = new ConnectionFactory().conecta();
     }
-    
+
     // Método Cadastrar Cliente
-    public void cadastrarCliente(Clientes obj){
+    public void cadastrarCliente(Clientes obj) {
         try {
-            
+
             // criar o comando SQL
-            
             String cmdsql = "insert into clientes (nome, email, telefone) values (?,?,?)";
-            
+
             // organizar o comando e executar
-            
             PreparedStatement stmt = conecta.prepareStatement(cmdsql);
             stmt.setString(1, obj.getNome());
             stmt.setString(2, obj.getEmail());
             stmt.setString(3, obj.getTelefone());
-            
+
             // executar o comando
-            
             stmt.execute();
-            
+
             // fechar a conexão
-            
             stmt.close();
-            
+
         } catch (SQLException e) {
-            throw new  RuntimeException(e);
+            throw new RuntimeException(e);
         }
     }
-    
-     // Método Editar Cliente
-    public void editarCliente(Clientes obj){
+
+    // Método Editar Cliente
+    public void editarCliente(Clientes obj) {
         try {
-            
+
             // criar o comando SQL
-            
             String cmdsql = "update clientes set nome=?, email=?, telefone=? where idcliente=?";
-            
+
             // organizar o comando e executar
-            
             PreparedStatement stmt = conecta.prepareStatement(cmdsql);
             stmt.setString(1, obj.getNome());
             stmt.setString(2, obj.getEmail());
             stmt.setString(3, obj.getTelefone());
             stmt.setInt(4, obj.getIdcliente());
-            
+
             // executar o comando
-            
             stmt.execute();
-            
+
             // fechar a conexão
-            
             stmt.close();
-            
+
         } catch (SQLException e) {
-            throw new  RuntimeException(e);
+            throw new RuntimeException(e);
         }
     }
-    
-     // Método Excluir Cliente
-    public void excluirCliente(Clientes obj){
+
+    // Método Excluir Cliente
+    public void excluirCliente(Clientes obj) {
         try {
-            
+
             // criar o comando SQL
-            
             String cmdsql = "delete from clientes where idcliente=?";
-            
+
             // organizar o comando e executar
-            
             PreparedStatement stmt = conecta.prepareStatement(cmdsql);
             stmt.setInt(1, obj.getIdcliente());
-           
-            
+
             // executar o comando
-            
             stmt.execute();
-            
+
             // fechar a conexão
-            
             stmt.close();
-            
+
         } catch (SQLException e) {
-            throw new  RuntimeException(e);
+            throw new RuntimeException(e);
         }
     }
-    
-     // Método para listar os clientes na Jtable
-    public List<Clientes> listarClientes(){
+
+    // Método para listar os clientes na Jtable
+    public List<Clientes> listarClientes() {
         try {
-            
-           // 1º Criar o vetor que vai armazenar os registros do BD
+
+            // 1º Criar o vetor que vai armazenar os registros do BD
             List<Clientes> lista = new ArrayList<Clientes>();
-            
+
             // 2º Criar o comando SQL
             String cmdSql = "select * from clientes";
-            
+
             //  Organizar o comando para execução
             PreparedStatement stmt = conecta.prepareStatement(cmdSql);
-            
+
             // 3º Guardar o resultado do "select" dentro do objeto "rs" que é do tipo ResultSet
             ResultSet rs = stmt.executeQuery();
-            
+
             // 4º Enquanto houver registros (resultado do select) guarde na lista
-            while(rs.next()){
+            while (rs.next()) {
                 Clientes cli = new Clientes();
                 cli.setIdcliente(rs.getInt("idcliente"));
                 cli.setNome(rs.getString("nome"));
                 cli.setEmail(rs.getString("email"));
                 cli.setTelefone(rs.getString("telefone"));
-                
+
                 lista.add(cli);
             }
             return lista;
-            
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        
-        
+
     }
-    
+
     // Método para fazer Busca por Nome
-    public List<Clientes> BuscarClientes(String nome){
+    public List<Clientes> BuscarClientes(String nome) {
         try {
-            
-           // 1º Criar o vetor que vai armazenar os registros do BD
+
+            // 1º Criar o vetor que vai armazenar os registros do BD
             List<Clientes> lista = new ArrayList<Clientes>();
-            
+
             // 2º Criar o comando SQL
             String cmdSql = "select * from clientes where nome like ?";
-            
+
             //  Organizar o comando para execução
             PreparedStatement stmt = conecta.prepareStatement(cmdSql);
             stmt.setString(1, nome);
-            
+
             // 3º Guardar o resultado do "select" dentro do objeto "rs" que é do tipo ResultSet
             ResultSet rs = stmt.executeQuery();
-            
+
             // 4º Enquanto houver registros (resultado do select) guarde na lista
-            while(rs.next()){
+            while (rs.next()) {
                 Clientes cli = new Clientes();
                 cli.setIdcliente(rs.getInt("idcliente"));
                 cli.setNome(rs.getString("nome"));
                 cli.setEmail(rs.getString("email"));
                 cli.setTelefone(rs.getString("telefone"));
-                
+
                 lista.add(cli);
             }
             return lista;
-            
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        
-        
+
     }
-    
+
     // Criando método de Login
-       public boolean fazerLogin(String email, String senha){
-       try {
-           
-           String cmdSql = "select * clientes where email = ? and senha=?";
-           
-           PreparedStatement stmt = conecta.prepareStatement(cmdSql);
-           
-           stmt.setString(1, email);
-           stmt.setString(2, senha);
-           
-           ResultSet rs = stmt.executeQuery();
-           
-           if(rs.first()){
-               // faz login
-               return true;
-           }
-           
-       } catch (Exception e) {
-       }
-        return false;
-}
+    public boolean fazerLogin(String email, String senha) {
+        boolean con = false;
+        try {
+
+            String cmdSql = "select * from clientes where email = ? and senha=?";
+
+            PreparedStatement stmt = conecta.prepareStatement(cmdSql);
+
+            stmt.setString(1, email);
+            stmt.setString(2, senha);
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                con = true;
+            }
+
+        } catch (Exception e) {
+        }
+        return con;
+    }
+
 }
