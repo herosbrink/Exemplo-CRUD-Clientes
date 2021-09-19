@@ -176,4 +176,26 @@ public class ClientesDao {
         
     }
     
+    // Criando método de Login
+       public boolean fazerLogin(String email, String senha){
+       try {
+           
+           String cmdSql = "select * clientes where email = ? and senha=?";
+           
+           PreparedStatement stmt = conecta.prepareStatement(cmdSql);
+           
+           stmt.setString(1, email);
+           stmt.setString(2, senha);
+           
+           ResultSet rs = stmt.executeQuery();
+           
+           if(rs.first()){
+               // faz login
+               return true;
+           }
+           
+       } catch (Exception e) {
+       }
+        return false;
+}
 }
